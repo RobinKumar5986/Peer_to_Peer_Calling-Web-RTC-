@@ -24,12 +24,16 @@ import java.util.concurrent.TimeUnit;
 
 public class NumberActivity extends AppCompatActivity {
     ActivityNumberBinding binding;
+    String uID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityNumberBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //----------getting the User Id--------//
+        uID=getIntent().getStringExtra("uName");
 
         binding.btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +76,7 @@ public class NumberActivity extends AppCompatActivity {
                                             binding.progressSendingOtp.setVisibility(View.GONE);
                                             binding.btnContinue.setVisibility(View.VISIBLE);
                                             Intent intent = new Intent(NumberActivity.this, OtpActivity.class);
+                                            intent.putExtra("FirstUser",uID);//user id using the email.
                                             intent.putExtra("number", n);
                                             intent.putExtra("OTP_AUTH",OTP);
                                             startActivity(intent);

@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot != null) {
+                    userId=getIntent().getStringExtra("uName");
                     user = snapshot.child(userId).child("user").getValue(String.class);
                     String email = snapshot.child(userId).child("email").getValue(String.class);
                     binding.topTab.setText("Howdy " + user + " !!");

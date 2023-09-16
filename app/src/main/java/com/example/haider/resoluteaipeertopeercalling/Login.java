@@ -3,6 +3,7 @@ package com.example.haider.resoluteaipeertopeercalling;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -48,6 +49,7 @@ public class Login extends AppCompatActivity {
                             dialog.dismiss();
                             if(task.isSuccessful()){
                                 Intent intent=new Intent(Login.this,NumberActivity.class);
+                                intent.putExtra("uName", Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -63,11 +65,13 @@ public class Login extends AppCompatActivity {
             }
         });
         //----------Checking if Already Login--------------//
-        if(mAuth.getCurrentUser()!=null){
-            Intent intent=new Intent(Login.this,NumberActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        if(mAuth.getCurrentUser()!=null){
+//            Intent intent=new Intent(Login.this, NumberActivity.class);
+////            intent.putExtra("uName",mAuth.getCurrentUser().getUid());
+//            Toast.makeText(this, mAuth.getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+//            startActivity(intent);
+//            finish();
+//        }
         //-----------Click To SignUp----------------//
         binding.txtClickSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -41,11 +41,11 @@ public class SignUp extends AppCompatActivity {
         //---------Creating user Account using Google Firebase-------//
         mAuth=FirebaseAuth.getInstance();
         //-----------Checking if the user is Already login-----------//
-        if(mAuth.getCurrentUser()!=null) {
-            Intent intent = new Intent(SignUp.this, NumberActivity.class);
-            startActivity(intent);
-            finish();
-        }
+//        if(mAuth.getCurrentUser()!=null) {
+//            Intent intent = new Intent(SignUp.this, NumberActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
         //-----------Else Creating new User Account------------//
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +75,9 @@ public class SignUp extends AppCompatActivity {
                                 userName nameObj=new userName(user,email,password);
 
                                 firebaseDatabase.getReference().child("Users").child(uId.getUid()).setValue(nameObj);
-                                
+
                                 Toast.makeText(SignUp.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
+                                intent.putExtra("uName",mAuth.getCurrentUser().getUid());
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -96,7 +97,7 @@ public class SignUp extends AppCompatActivity {
         binding.txtAlreadyHaveAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SignUp.this,Long.class);
+                Intent intent=new Intent(SignUp.this,Login.class);
                 startActivity(intent);;
                 finish();
             }

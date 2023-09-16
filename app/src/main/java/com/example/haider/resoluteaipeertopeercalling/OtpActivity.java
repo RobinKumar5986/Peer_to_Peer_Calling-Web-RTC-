@@ -78,6 +78,8 @@ public class OtpActivity extends AppCompatActivity {
 
                                     if(task.isSuccessful()){
                                         Intent intent =new Intent(OtpActivity.this,MainActivity.class);
+                                        intent.putExtra("uName",getIntent().getStringExtra("FirstUser"));
+
                                         startActivity(intent);
                                         finishAffinity();
                                         Toast.makeText(OtpActivity.this, "Number Verified Successfully", Toast.LENGTH_SHORT).show();
